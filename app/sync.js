@@ -12,7 +12,7 @@ const Sync = {
 
   api: (path, opt = {}) => fetch('/api/' + path, Object.assign({}, opt, { headers: Object.assign({ 'X-Alvorada': '1' }, opt.headers) })),
   async init() {
-    try { const r = await Sync.api('sync/info'); if (r.ok && (r.headers.get('content-type') || '').includes('json')) { Sync.avail = true; Sync.info(await r.json()); } } catch (e) {}
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) try { const r = await Sync.api('sync/info'); if (r.ok && (r.headers.get('content-type') || '').includes('json')) { Sync.avail = true; Sync.info(await r.json()); } } catch (e) {}
     try { const t = JSON.parse(localStorage.getItem('alvorada-g') || 'null'); if (t && t.exp > Date.now() + 60000) { Sync.g.token = t.token; Sync.g.exp = t.exp; } } catch (e) {}
     DB.onChange = () => Sync.soon();
     await Sync.run(true);

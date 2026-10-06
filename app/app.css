@@ -578,7 +578,8 @@ body.dragging { user-select: none; cursor: grabbing; }
   .gr, .goverlay { grid-template-columns: 130px 1fr; }
   .btn.sm span, .tbar .btn.ghost.sm span { display: inline; }
   .ttabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .ttabs button { flex: none; }
-  #toast { bottom: calc(70px + env(safe-area-inset-bottom)); }
+  #toast { bottom: calc(70px + env(safe-area-inset-bottom)); left: 12px; right: 84px; max-width: none; transform: translateY(30px); }
+  #toast.on { transform: translateY(0); }
   .srow .icon { opacity: 1; }
 }
 
