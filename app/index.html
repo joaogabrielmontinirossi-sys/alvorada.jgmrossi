@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alvorada</title>
+<meta name="description" content="Alvorada — calendário, tarefas, lembretes e diário com arquivos, sincronizado entre Windows, site e celular e com o Google Agenda.">
+<meta name="theme-color" content="#4f46e5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Alvorada">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar"></aside>
+  <main id="main">
+    <header id="topbar"></header>
+    <div id="filterbar" hidden></div>
+    <div id="view"></div>
+  </main>
+  <aside id="panel"></aside>
+</div>
+<nav id="tabbar">
+  <button data-act="view" data-v="agenda"><svg class="ic" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>Agenda</button>
+  <button data-act="view" data-v="month"><svg class="ic" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5"/></svg>Mês</button>
+  <button data-act="view" data-v="tasks"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>Tarefas</button>
+  <button data-act="view" data-v="journal"><svg class="ic" viewBox="0 0 24 24"><path d="M12 6c-2-1.600-5-2-8-1v13c3-1 6-.6 8 1 2-1.600 5-2 8-1V5c-3-1-6-.6-8 1zM12 6v13"/></svg>Diário</button>
+  <button data-act="openSide"><svg class="ic" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Mais</button>
+</nav>
+<button id="fab" data-act="fab" title="Criar"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<div id="scrim" data-act="closeSide"></div>
+<div id="toast"></div>
+<input type="file" id="filepick" multiple hidden>
+<script src="store.js"></script>
+<script src="dates.js"></script>
+<script src="ui.js"></script>
+<script src="cal.js"></script>
+<script src="tasks.js"></script>
+<script src="editor.js"></script>
+<script src="notes.js"></script>
+<script src="sync.js"></script>
+<script src="settings.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
