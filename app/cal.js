@@ -81,7 +81,7 @@ function timeGrid(el, days, strip) {
       ${days.map(col).join('')}
     </div></div></div>`;
   const sc = $('.tg-scroll', el);
-  sc.scrollTop = Cal.scroll !== null ? Cal.scroll : Math.max(0, (Math.min(S.set.workStart, now.getHours()) - 1) * H);
+  sc.scrollTop = Cal.scroll !== null ? Cal.scroll : Math.max(0, (Math.min(S.set.workStart, now.getHours()) - 1) * H - 12);
   sc.onscroll = () => { Cal.scroll = sc.scrollTop; };
   bindGrid(el, H);
 }

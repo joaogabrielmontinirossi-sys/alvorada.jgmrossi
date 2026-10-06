@@ -47,7 +47,7 @@ const Settings = {
         ${row('iCalendar (.ics)', `<div class="inl wrap"><button class="btn ghost sm" data-x="icsi">${ic('up')} Importar .ics…</button><button class="btn ghost sm" data-x="icse">${ic('dl')} Exportar tudo em .ics</button><button class="btn ghost sm" data-x="icss">${ic('link')} Assinar por endereço…</button></div><p class="muted">Funciona com Google Agenda, Outlook, Apple Calendário e qualquer programa que use .ics.</p>`)}
         ${row('Modelos de itens', `<button class="btn ghost sm" data-x="tpl">Gerenciar modelos (${S.templates.length})</button>`)}
         ${row('Armazenamento', `<p class="muted">${DB.persistent() ? 'Dados guardados neste aparelho (IndexedDB).' : 'Atenção: este navegador não permitiu guardar dados; tudo se perde ao fechar.'} ${count(S.items.length, 'item', 'itens')}, ${count(S.notes.length, 'anotação', 'anotações')}, ${count(S.filemeta.length, 'arquivo', 'arquivos')} (${fmtSize(S.filemeta.reduce((n, f) => n + f.size, 0))}).</p><button class="btn ghost sm danger" data-x="wipe">Apagar tudo deste aparelho…</button>`)}
-        <p class="muted">Alvorada 1.0 · <a href="https://github.com/joaogabrielmontinirossi-sys/alvorada" target="_blank" rel="noopener">código e ajuda</a></p>`;
+        <p class="muted">Alvorada 1.0 · <a href="https://github.com/joaogabrielmontinirossi-sys/alvorada.jgmrossi" target="_blank" rel="noopener">código e ajuda</a></p>`;
       if (t === 'look') bindDots(body, c => { s.accent = c; Store.saveSet(); applyTheme(); });
     };
     Settings.redraw = () => { if (m.el.isConnected) draw(); };

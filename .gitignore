@@ -1,0 +1,10 @@
+# Gerado pelo build.ps1 (o GitHub Actions compila e publica em Releases)
+dist/
+# Configuração local do editor
+launch.json
+.vscode/
+# Lixo de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log

@@ -1,0 +1,32 @@
+# Compila o Alvorada.exe numa máquina Windows e publica em Releases a cada envio para a main.
+name: Windows
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', 'desktop/**', 'build.ps1', '.github/workflows/windows.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compilar
+        shell: powershell
+        run: ./build.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Alvorada
+          path: dist/Alvorada.exe
+      - name: Publicar em Releases
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="v1.0.${{ github.run_number }}"
+          gh release create "$tag" dist/Alvorada.exe --target "${{ github.sha }}" --title "Alvorada $tag" \
+            --notes "Baixe o **Alvorada.exe** abaixo e abra com dois cliques. Não precisa instalar. Se o Windows mostrar o aviso do SmartScreen, clique em *Mais informações › Executar assim mesmo*."

@@ -241,8 +241,8 @@ const Store = {
     mk('lists', NORM.lists({ id: 'entrada', name: 'Entrada', color: '#616161', icon: '📥' }));
     mk('tags', NORM.tags({ id: 'importante', name: 'importante', color: '#d50000' }));
     const t = new Date(), d = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
-    const a = mk('items', normItem({ id: 'ex1', type: 'task', title: 'Conhecer o Alvorada: clique para abrir', cal: 'pessoal', scope: 'day', start: d, prio: 2, desc: 'Experimente: arraste na grade para criar um evento, pressione <b>C</b> para criar, <b>Ctrl+K</b> para a paleta de comandos e <b>?</b> para ver os atalhos.', check: [{ text: 'Criar um evento arrastando na grade' }, { text: 'Abrir o Diário e anotar o dia' }, { text: 'Ligar a sincronização em Ajustes' }] }));
-    mk('items', normItem({ id: 'ex2', type: 'task', title: 'Depois: organizar etiquetas e listas', cal: 'pessoal', scope: 'day', start: d, links: [{ type: 'next', to: a.id }] }));
+    mk('items', normItem({ id: 'ex1', type: 'task', title: 'Conhecer o Alvorada: clique para abrir', cal: 'pessoal', scope: 'day', start: d, prio: 2, desc: 'Experimente: arraste na grade para criar um evento, pressione <b>C</b> para criar, <b>Ctrl+K</b> para a paleta de comandos e <b>?</b> para ver os atalhos.', check: [{ text: 'Criar um evento arrastando na grade' }, { text: 'Abrir o Diário e anotar o dia' }, { text: 'Ligar a sincronização em Ajustes' }], links: [{ type: 'next', to: 'ex2' }] }));
+    mk('items', normItem({ id: 'ex2', type: 'task', title: 'Depois: organizar etiquetas e listas', cal: 'pessoal', scope: 'day', start: d }));
     mk('items', normItem({ id: 'ex3', type: 'event', title: 'Planejamento da semana', cal: 'trabalho', scope: 'time', start: d + 'T09:00', end: d + 'T10:00', rrule: 'FREQ=WEEKLY', tags: ['importante'] }));
   },
   saveSet: () => DB.put('kv', S.set),

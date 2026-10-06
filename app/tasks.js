@@ -196,7 +196,8 @@ Views.graph = {
       for (const e of edges) { const a = ix[e.a], b = ix[e.b], dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, f = (d - 150) * .02; a.vx += dx / d * f; a.vy += dy / d * f; b.vx -= dx / d * f; b.vy -= dy / d * f; }
       for (const n of nodes) { n.vx += (500 - n.x) * .004; n.vy += (340 - n.y) * .004; n.x += clamp(n.vx, -14, 14); n.y += clamp(n.vy, -14, 14); n.vx *= .55; n.vy *= .55; }
     }
-    const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y), x0 = Math.min(...xs, 400) - 110, y0 = Math.min(...ys, 300) - 50, w = Math.max(...xs, 600) - x0 + 110, h = Math.max(...ys, 400) - y0 + 60;
+    const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y), minX = Math.min(...xs) - 110, maxX = Math.max(...xs) + 110, minY = Math.min(...ys) - 50, maxY = Math.max(...ys) + 60;
+    const w = Math.max(1000, maxX - minX), h = Math.max(680, maxY - minY), x0 = (minX + maxX - w) / 2, y0 = (minY + maxY - h) / 2; // tamanho mínimo: poucos itens não ficam gigantes
     const TL = { '': 'Todos', blocks: 'Bloqueia', next: 'Sequência', related: 'Relacionada', parent: 'Subtarefa', dup: 'Duplicada', ref: 'Menção' };
     el.innerHTML = `<div class="grv"><div class="tbar"><span class="muted">${nodes.length ? `${count(nodes.length, 'item ligado', 'itens ligados')}, ${count(edges.length, 'vínculo', 'vínculos')}. Clique num item para abrir.` : ''}</span><span class="grow"></span>${Object.entries(TL).map(([k, v]) => `<button class="btn ghost sm${tf === k ? ' on' : ''}" data-act="graphType" data-t="${k}">${k ? `<i class="ln ${k}"></i>` : ''}${v}</button>`).join('')}</div>
       ${nodes.length ? `<div class="grwrap"><svg viewBox="${x0} ${y0} ${w} ${h}"><defs>${Object.keys(LINKS).map(t => `<marker id="ar-${t}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk ${t}"/></marker>`).join('')}</defs>

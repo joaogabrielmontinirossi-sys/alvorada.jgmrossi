@@ -1,5 +1,7 @@
-# Alvorada: gera os ícones a partir de app\logo.svg e compila dist\Alvorada.exe.
+﻿# Alvorada: gera os ícones a partir de app\logo.svg e compila dist\Alvorada.exe.
 # Usa apenas o que já vem no Windows: Edge (render do SVG), System.Drawing e o compilador C# do .NET Framework.
+# Os ícones só são refeitos se faltarem ou com -Icons (útil depois de mudar o logo.svg).
+param([switch]$Icons)
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
 $app = Join-Path $root 'app'
@@ -24,7 +26,7 @@ function Resize-Png([string]$src, [int]$size, [string]$out) {
     $g.Dispose(); $img.Dispose()
     $bmp.Save($out, [System.Drawing.Imaging.ImageFormat]::Png); $bmp.Dispose()
 }
-if ($edge) {
+if ($edge -and ($Icons -or -not (Test-Path (Join-Path $icons 'icon-512.png')))) {
     $svg = Get-Content (Join-Path $app 'logo.svg') -Raw -Encoding UTF8
     Render-Svg $svg (Join-Path $icons 'icon-512.png')
     Render-Svg ($svg -replace 'rx="116"', 'rx="0"') (Join-Path $icons 'maskable-512.png')
@@ -48,7 +50,7 @@ foreach ($p in $pngs) { $bw.Write($p) }
 # --- Alvorada.exe ---
 $csc = "$env:WINDIR\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 $res = Get-ChildItem $app -Recurse -File | ForEach-Object { "/resource:`"$($_.FullName)`",app/$($_.FullName.Substring($app.Length + 1) -replace '\\','/')" }
-& $csc /nologo /target:winexe /optimize+ "/out:$dist\Alvorada.exe" "/win32icon:$ico" /reference:System.Windows.Forms.dll $res (Join-Path $root 'desktop\Alvorada.cs')
+& $csc /nologo /codepage:65001 /target:winexe /optimize+ "/out:$dist\Alvorada.exe" "/win32icon:$ico" /reference:System.Windows.Forms.dll $res (Join-Path $root 'desktop\Alvorada.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar Alvorada.exe' }
 
 Get-ChildItem $dist | Select-Object Name, Length
