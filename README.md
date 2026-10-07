@@ -1,5 +1,7 @@
 # Alvorada
 
+[![Captura de tela do Alvorada](docs/captura.png)](https://joaogabrielmontinirossi-sys.github.io/alvorada.jgmrossi/)
+
 Calendário, tarefas, lembretes e diário com arquivos, num aplicativo só. Funciona no Windows (`Alvorada.exe`), no navegador e no celular (instalável como aplicativo), sem servidor e sem conta obrigatória: os dados ficam no seu aparelho e, se você quiser, sincronizam pelo Google Drive e com o Google Agenda.
 
 - **Site e celular:** https://joaogabrielmontinirossi-sys.github.io/alvorada.jgmrossi/
@@ -230,3 +232,7 @@ Para testar a versão web no computador, sirva a pasta `app` com qualquer servid
 Para compilar o `.exe` no Windows, rode `powershell -ExecutionPolicy Bypass -File build.ps1`. Ele usa só o que já vem no Windows (o compilador C# do .NET Framework). Com `-Icons`, refaz os ícones a partir do `app/logo.svg` usando o Edge.
 
 A cada envio para a `main`, o GitHub Actions publica o site no GitHub Pages (`.github/workflows/web.yml`) e compila o `.exe` numa máquina Windows, publicando-o em Releases (`.github/workflows/windows.yml`).
+
+## Licença
+
+[MIT](LICENSE): pode usar, copiar, modificar e distribuir livremente, mantendo o aviso de autoria.
