@@ -1,6 +1,6 @@
 /* Alvorada — service worker da versão web: guarda o app para abrir sem internet. */
-const VERSION = 'alvorada-1.0.1';
-const FILES = ['./', 'index.html', 'app.css', 'store.js', 'dates.js', 'ui.js', 'cal.js', 'tasks.js', 'editor.js', 'notes.js', 'sync.js', 'settings.js', 'app.js', 'logo.svg', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png'];
+const VERSION = 'alvorada-1.0.1-e1';
+const FILES = ['./', 'index.html', 'elo.js', 'app.css', 'store.js', 'dates.js', 'ui.js', 'cal.js', 'tasks.js', 'editor.js', 'notes.js', 'sync.js', 'settings.js', 'app.js', 'logo.svg', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
